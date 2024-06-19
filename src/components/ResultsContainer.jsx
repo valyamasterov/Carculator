@@ -1,9 +1,14 @@
 import styles from "./ResultsContainer.module.css";
 import ResultCard from "./ResultCard";
 import cardata from "./cardata.json";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
-const ResultsContainer = ({ totalDistance, totalDriveTime, newWaitTime }) => {
+const ResultsContainer = ({
+  totalDistance,
+  totalDriveTime,
+  newWaitTime,
+  resultsRef,
+}) => {
   const [carData, setCarData] = useState(null);
 
   const getCompanyLogo = (company) => {
@@ -141,7 +146,7 @@ const ResultsContainer = ({ totalDistance, totalDriveTime, newWaitTime }) => {
   }, [totalDistance, totalDriveTime, newWaitTime]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="results" ref={resultsRef}>
       {carData &&
         carData
           .map((car, index) => {

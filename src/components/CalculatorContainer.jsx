@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 import styles from "./CalculatorContainer.module.css";
 import Button from "./Button";
 import CalculatorTableContainer from "./CalculatorTableContainer";
@@ -11,6 +11,7 @@ const CalculatorContainer = ({
   setNewWaitTime,
   setTotalDriveTime,
   setTotalDistance,
+  scrollToResults,
 }) => {
   const calculateDistance = (origin, destination) => {
     var service = new google.maps.DistanceMatrixService();
@@ -46,7 +47,9 @@ const CalculatorContainer = ({
         <h3>All you have to do is choose where you want to go.</h3>
       </div>
       <Calculator calculateDistance={calculateDistance} />
-      <Button type="search-cars">Show cars</Button>
+      <Button type="search-cars" onClick={scrollToResults}>
+        Show cars
+      </Button>
       <img className={styles.arrows} src="/images/hero-arrows.png" />
       <CalculatorTableContainer
         totalDriveTime={totalDriveTime}
